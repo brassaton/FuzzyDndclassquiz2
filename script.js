@@ -204,7 +204,7 @@ const CLASS_PROFILES = {
   Warlock:{sustained:4,singleTarget:4,burst:4,range:4,control:4,utility:3,aoe:3,defense:2,support:2,mobility:2,healing:1,tank:1},
   Wizard:{utility:5,control:5,aoe:5,burst:4,range:4,singleTarget:3,sustained:3,defense:2,mobility:2,support:2,healing:1,tank:0},
   Artificer:{utility:5,support:4,defense:4,range:3,sustained:3,control:3,aoe:2,singleTarget:2,burst:2,mobility:2,healing:3,tank:3},
-  "Death Knight":{tank:5,defense:5,singleTarget:4,burst:4,sustained:3,control:3,healing:2,support:2,aoe:2,mobility:1,utility:2,range:1}
+  "Death Knight":{tank:5,defense:5,singleTarget:4,burst:4,sustained:3,control:3,healing:2,support:1,aoe:2,mobility:1,utility:2,range:1}
 };
 
 const ARCHETYPE_RULES = [
@@ -214,12 +214,12 @@ const ARCHETYPE_RULES = [
   ["control",["Enchantment","Illusion","Graviturgy","Chronurgy","Fathomless","Great Old One","Archfey","Aberrant Mind","Open Hand","Ascendant Dragon","Four Elements","Shadow","Trickery","Entropy","Cobalt Soul","Conjuration","Fey"]],
   ["burst",["Assassin","Vengeance","Champion","Samurai","Gloom Stalker","Arcane Archer","Evocation","Draconic","Wild Magic","Storm Sorcery","Fiend","Hexblade","Bladesinging","Titan","Lethality","Fangs","Death"]],
   ["sustained",["Champion","Hunter","Battle Master","Battlerager","Berserker","Beast","Spores","Land","Bladesinging","Swords","Valor","Thief","Swarmkeeper","Kensei","War Magic","Artillerist"]],
-  ["utility",["Lore","Mastermind","Inquisitive","Arcane Trickster","Divination","Scribes","Conjuration","Transmutation","Researcher","Alchemist","Knowledge","Order","Cobalt Soul","Creation","Echo Knight","Clockwork","Fey Wanderer","Horizon Walker","Genie"]],
-  ["mobility",["Swashbuckler","Scout","Shadow","Echo Knight","Horizon Walker","Fey Wanderer","Drunken Master","Open Sea","Gloom Stalker","Astral Self","Ascendant Dragon","Thief","Monk","Ranger"]],
+  ["utility",["Lore","Mastermind","Inquisitive","Arcane Trickster","Divination","Scribes","Conjuration","Transmutation","Researcher","Alchemist","Knowledge","Order","Cobalt Soul","Creation","Echo Knight","Clockwork","Fey Wanderer","Horizon Walker",]],
+  ["mobility",["Swashbuckler","Scout","Shadow","Echo Knight","Medic","Horizon Walker","Fey Wanderer","Drunken Master","Open Sea","Gloom Stalker","Astral Self","Ascendant Dragon","Thief","Monk","Ranger"]],
   ["defense",["Abjuration","Armorer","Rune Knight","Psi Warrior","Redemption","Devotion","Crown","Stability","Twilight","Forge","Soul Shield","Clockwork","Ancestral Guardian","Totem Warrior","Kensei"]],
   ["support",["Leadership","Encouragement","Peace","Order","Glamour","Creation","Lore","Valor","Spirits","Shepherd","Celestial","Divine Soul","Researcher","Royalty","Time","Rejuvenation","Battle Smith"]],
   ["range",["Arcane Archer","Gunslinger","Shadow Archer","Gloom Stalker","Hunter","Beast Master","Swarmkeeper","Horizon Walker","Stars","Coast","Artillerist","Eldritch Knight","War Magic","Genie","Great Old One"]],
-  ["singleTarget",["Assassin","Vengeance","Monster Slayer","Hunter","Champion","Samurai","Soulknife","Hexblade","Death","Whispers","Bladesinging","Kensei","Lethality","Titan","Draconic","Pestilence"]]
+  ["singleTarget",["Assassin","Vengeance","Monster Slayer","Hunter","Champion","Samurai","Soulknife","Hexblade","Death","Whispers","Bladesinging","Kensei","Lethality","Titan","Genie","Draconic","Pestilence"]]
 ];
 
 
@@ -359,7 +359,7 @@ function subclassProfile(cls, sub){
   };
   const chaosSignals = {
     "Path of Wild Magic":3.5,"Circle of Fey":3.5,"College of Spirits":3,"Outlaw":3.5,
-    "Alchemist":2.5,"Wild Magic":3.5,"Path of Time":1.5,"Fate":2,"Chaos":2
+    "Alchemist":2.5,"Wild Magic":3.5,"Path of Time":1,"Fate":2,"Chaos":2
   };
   if(chaosSignals[sub]) p.chaos=(p.chaos||0)+chaosSignals[sub];
 
@@ -488,15 +488,15 @@ const FINAL_FANTASY_QUESTIONS = [
     ["NO",{traits:{utility:-1},classes:{Cleric:-3,Druid:-3,Bard:-3,Sorcerer:-3,Warlock:-3,Wizard:-3,Artificer:-3,Paladin:-1,Ranger:-1},weight:8}]
   ]},
   {category:"Class Fantasy",trait:"utility",phase:"final",weight:8,text:"Do you want to cast a lot of spells?",answers:[
-    ["YES",{traits:{utility:2,range:1},classes:{Wizard:4,Sorcerer:4,Warlock:4,Cleric:3,Druid:3,Bard:3,Artificer:2},weight:8}],
-    ["NO",{traits:{utility:-1},classes:{Wizard:-4,Sorcerer:-4,Warlock:-4,Cleric:-3,Druid:-3,Bard:-3,Artificer:-2},weight:8}]
+    ["YES",{traits:{utility:2,range:1},classes:{Wizard:4,Sorcerer:4,Warlock:3,Cleric:3,Druid:3,Bard:3,Artificer:2},weight:8}],
+    ["NO",{traits:{utility:-1},classes:{Wizard:-4,Sorcerer:-4,Warlock:-2,Cleric:-3,Druid:-3,Bard:-3,Artificer:-2},weight:8}]
   ]},
   {category:"Class Fantasy",trait:"burst",phase:"final",weight:8,text:"Do you want holy or radiant magic?",answers:[
     ["YES",{traits:{support:1,burst:1},classes:{Cleric:4,Paladin:4,Barbarian:2,Sorcerer:2},weight:8}],
     ["NO",{traits:{support:-1},classes:{Cleric:-2,Paladin:-2,Barbarian:-1,Sorcerer:-1},weight:8}]
   ]},
   {category:"Class Fantasy",trait:"aoe",phase:"final",weight:8,text:"Do you want elemental magic to be a big part of your character?",answers:[
-    ["YES",{traits:{aoe:2,burst:1},classes:{Sorcerer:4,Wizard:4,Druid:3,Warlock:2,Cleric:2},weight:8}],
+    ["YES",{traits:{aoe:2,burst:1},classes:{Sorcerer:4,Wizard:4,Druid:3,Warlock:1,Cleric:2},weight:8}],
     ["NO",{traits:{aoe:-1},classes:{Sorcerer:-2,Wizard:-2,Druid:-2,Warlock:-1,Cleric:-1},weight:8}]
   ]},
   {category:"Class Fantasy",trait:"utility",phase:"final",weight:8,text:"Do you want nature magic or shapeshifting?",answers:[
@@ -516,8 +516,8 @@ const FINAL_FANTASY_QUESTIONS = [
     ["NO",{traits:{singleTarget:-1},classes:{Fighter:-3,Barbarian:-3,Paladin:-3,Monk:-2,Rogue:-1,Ranger:-1,"Death Knight":-3},weight:8}]
   ]},
   {category:"Class Fantasy",trait:"healing",phase:"final",weight:8,text:"Do you want healing or strong party support to be a major part of your kit?",answers:[
-    ["YES",{traits:{healing:2,support:2},classes:{Cleric:4,Bard:4,Druid:4,Paladin:3,Artificer:3,Sorcerer:2,Warlock:2},weight:8}],
-    ["NO",{traits:{healing:-1,support:-1},classes:{Cleric:-3,Bard:-3,Druid:-3,Paladin:-2,Artificer:-2,Sorcerer:-1,Warlock:-1},weight:8}]
+    ["YES",{traits:{healing:2,support:2},classes:{Cleric:4,Bard:4,Druid:4,Paladin:3,Artificer:3,Sorcerer:2,Warlock:-2},weight:8}],
+    ["NO",{traits:{healing:-1,support:-1},classes:{Cleric:-3,Bard:-3,Druid:-3,Paladin:-2,Artificer:-2,Sorcerer:-1,Warlock:1},weight:8}]
   ]},
   {category:"Class Fantasy",trait:"chaos",phase:"final",weight:10,text:"Do you want your abilities to be unpredictable or chaotic?",answers:[
     ["YES",{traits:{chaos:5,utility:1},classes:{Sorcerer:4,Barbarian:4,Druid:4,Rogue:3,Bard:3,Artificer:3},weight:10}],
