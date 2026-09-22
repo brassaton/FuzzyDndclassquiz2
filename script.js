@@ -281,7 +281,7 @@ const SUBCLASS_SIGNALS = {
   "Nature Domain":{control:2,utility:2,defense:1},
   "Life Domain":{healing:4,support:3,defense:1},
   "Order Domain":{support:3,control:2,utility:1},
-  "Eloquence":{control:2,utility:2,skills:4},
+  "College of Eloquence":{control:2,utility:2,skills:4},
   "Pestilence":{sustained:4,singleTarget:2.5,control:1.5,utility:1},
   "Circle of Spores":{sustained:2.5,defense:2,singleTarget:1.5},
   "Circle of Stars":{range:2.5,utility:2,support:1.5},
