@@ -233,8 +233,8 @@ const SUBCLASS_TAGS = {
     "Path of the Totem Warrior","Path of the Ancestral Guardian","Path of the Battlerager",
     "Circle of the Moon","Armorer","Battle Smith","Cavalier","Rune Knight","Oath of the Crown",
     "Oath of Redemption","Oath of Conquest","Oath of Stability","Shelter Conclave",
-    "Soul Shield","Titan","War Magic","School of Abjuration","Twilight Domain","Forge Domain",
-    "Way of the Long Death"
+    "Soul Shield","War Magic","School of Abjuration","Forge Domain",
+    "Way of the Long Death","Transmogrification"
   ],
   stealth:[
     "Thief","Assassin","Scout","Arcane Trickster","Mastermind","Inquisitive","Way of Shadow",
@@ -250,18 +250,18 @@ const SUBCLASS_TAGS = {
     "Circle of the Land (Mountain)","Circle of the Land (Desert)","Circle of the Land (Arctic)",
     "Circle of Spores","Circle of Stars","Circle of Dreams","Circle of the Shepherd",
     "Circle of Wildfire","Circle of the Moon","Circle of Fangs","Circle of Fey","Circle of Drakes",
-    "Fey Wanderer","Gloom Stalker","Monster Slayer","Swarmkeeper","Hunter","Beast Master",
-    "Drakewarden","Horizon Walker","Shelter Conclave","Royalty Conclave"
+    "Fey Wanderer","Gloom Stalker","Swarmkeeper","Hunter","Beast Master",
+    "Drakewarden","Horizon Walker","Shelter Conclave","Royalty Conclave","Twilight Domain","Nature Domain","Oath of the Ancients"
   ],
   chaos:[
     "Path of Wild Magic","Circle of Fey","College of Spirits","Outlaw","Wild Magic","Alchemist","Fate"
   ],
   holy:[
-    "War Domain","Peace Domain","Grave Domain","Light Domain","Twilight Domain","Life Domain",
-    "Forge Domain","Nature Domain","Order Domain","Oath of Devotion","Oath of Vengeance",
-    "Oath of the Ancients","Oath of Redemption","Oath of Glory","Oath of the Crown",
+    "War Domain","Peace Domain","Grave Domain","Light Domain","Life Domain",
+    "Forge Domain","Order Domain","Oath of Devotion","Oath of Vengeance",
+    "Oath of Redemption","Oath of Glory",
     "Oath of Conquest","Oath of the Watchers","Divine Soul","The Celestial","Path of the Zealot",
-    "Oath of Hearth"
+    "Oath of Hearth","Way of the Sun Soul"
   ]
 };
 
@@ -281,6 +281,7 @@ const SUBCLASS_SIGNALS = {
   "Nature Domain":{control:2,utility:2,defense:1},
   "Life Domain":{healing:4,support:3,defense:1},
   "Order Domain":{support:3,control:2,utility:1},
+  "Eloquence":{control:2,utility:2,skills:4},
   "Pestilence":{sustained:4,singleTarget:2.5,control:1.5,utility:1},
   "Circle of Spores":{sustained:2.5,defense:2,singleTarget:1.5},
   "Circle of Stars":{range:2.5,utility:2,support:1.5},
@@ -324,7 +325,7 @@ const SUBCLASS_SIGNALS = {
   "Way of the Sun Soul":{range:2.5,aoe:2,burst:1},
   "Way of the Astral Self":{range:2,control:2,utility:1.5},
   "Way of the Kensei":{range:2,singleTarget:2.5,defense:1.5},
-  "Way of Lethality":{singleTarget:3,burst:2.5,mobility:1.5},
+  "Way of Lethality":{singleTarget:2,sustained:4,mobility:1.5},
   "Oath of Vengeance":{burst:3,singleTarget:2.5,mobility:1},
   "Oath of the Ancients":{defense:3,support:2,control:1.5},
   "Oath of the Crown":{tank:3,defense:3,support:2},
@@ -346,16 +347,16 @@ const SUBCLASS_SIGNALS = {
   "Drakewarden":{support:2,range:1.5,sustained:2},
   "Horizon Walker":{mobility:2.5,range:2,utility:1.5},
   "Shelter Conclave":{tank:3,defense:3,singleTarget:1.5},
-  "Royalty Conclave":{utility:3,control:2,support:2},
+  "Royalty Conclave":{utility:3,control:2,support:2,skills:3},
   "Thief":{stealth:2,utility:2.5,mobility:2},
   "Soulknife":{stealth:1.5,utility:2,mobility:2,range:1.5},
   "Mastermind":{utility:3,support:2,control:1},
   "Arcane Trickster":{stealth:2,utility:2.5,control:2,range:1},
   "Phantom":{stealth:2,singleTarget:2,sustained:1.5},
-  "Inquisitive":{utility:2.5,singleTarget:2,control:1},
+  "Inquisitive":{utility:2.5,singleTarget:2,control:1,skills:2},
   "Scout":{stealth:2,mobility:2.5,range:1.5},
   "Swashbuckler":{mobility:3,singleTarget:2.5,burst:1.5},
-  "Assassin":{stealth:3,burst:3,singleTarget:2},
+  "Assassin":{stealth:3,burst:3,singleTarget:2,skills:1},
   "Medic":{healing:4,utility:2,singleTarget:1},
   "Outlaw":{chaos:3,burst:2.5,utility:2,mobility:1.5},
   "Shadow Archer":{range:3,stealth:2,singleTarget:2.5,burst:1.5},
@@ -397,7 +398,7 @@ const SUBCLASS_SIGNALS = {
   "Battle Smith":{tank:2,defense:2,support:2,sustained:2},
   "Alchemist":{healing:4,utility:2.5,support:2,aoe:1},
   "Artillerist":{aoe:2.5,range:2.5,burst:2},
-  "Researcher":{utility:3,range:2,support:1.5}
+  "Researcher":{utility:3,range:2,support:1.5,skills:1}
 };
 
 const CHAOS_SUBCLASSES=new Set([
@@ -410,7 +411,7 @@ const HARD_STEALTH_SUBCLASSES=new Set(SUBCLASS_TAGS.stealth);
 const HARD_RANGE_SUBCLASSES=new Set(SUBCLASS_TAGS.ranged);
 
 const SPELLCASTER_CLASSES=new Set(["Bard","Cleric","Druid","Paladin","Ranger","Sorcerer","Warlock","Wizard","Artificer","Death Knight"]);
-const SPELLCASTING_SUBCLASSES=new Set(["Eldritch Knight","Arcane Trickster","Way of the Four Elements","Way of the Sun Soul"]);
+const SPELLCASTING_SUBCLASSES=new Set(["Eldritch Knight","Arcane Trickster","Way of the Four Elements",]);
 
 function buildSubclassProfile(cls,sub){
   const p={};
